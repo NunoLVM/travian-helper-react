@@ -1,16 +1,49 @@
-# React + Vite
+# ⚔️ Travian Helper (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://vercel.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-Currently, two official plugins are available:
+Uma ferramenta feita em **React + Vite + Tailwind** para ajudar na gestão de tropas e recursos no jogo Travian.  
+Permite adicionar tropas personalizadas, calcular custos de treino e guardar tudo no `localStorage` para não perder dados ao atualizar a página.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Funcionalidades
+- ➕ Adicionar tropas com custos de madeira, barro, ferro e cereal  
+- 🗑️ Remover tropas cadastradas  
+- 📊 Calcular recursos necessários para treinar múltiplas unidades  
+- 💾 Persistência automática no `localStorage`  
+- 🎨 Interface moderna com TailwindCSS e ícones SVG temáticos  
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Demonstração
+👉 [Travian Helper Online](https://travianhelper.vercel.app/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tecnologias
+- [React](https://react.dev/)  
+- [Vite](https://vitejs.dev/)  
+- [TailwindCSS](https://tailwindcss.com/)  
+- [Vercel](https://vercel.com/) (deploy)
+
+---
+
+## 🌐 Deploy
+Este projeto está hospedado gratuitamente no [Vercel](https://vercel.com/).  
+Cada push para a branch `main` gera automaticamente uma nova versão online.
+
+---
+
+## 📸 Screenshots
+*(Adiciona aqui imagens da interface quando quiseres mostrar o resultado final)*
+
+---
+
+## 📜 Licença
+Este projeto é open-source e está sob a licença MIT.  
+Sente-te à vontade para usar, modificar e partilhar.
