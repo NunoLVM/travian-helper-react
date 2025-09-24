@@ -48,7 +48,7 @@ function Tropas() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto space-y-10">
+    <div className="max-w-5xl mx-auto space-y-10 px-4 overflow-x-hidden">
       <h2 className="text-3xl font-extrabold text-indigo-700">Tropas</h2>
 
       {/* Formulário de cadastro */}
@@ -56,7 +56,7 @@ function Tropas() {
         <h3 className="text-xl font-bold text-indigo-800">
           Adicionar nova tropa
         </h3>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
           <input
             type="text"
             value={nome}
@@ -109,74 +109,70 @@ function Tropas() {
         {tropas.length === 0 ? (
           <p className="text-gray-500">Nenhuma tropa adicionada ainda.</p>
         ) : (
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse table-fixed text-sm">
             <thead>
               <tr className="bg-gray-100 text-left">
-                <th className="px-4 py-2">Tropa</th>
-                <th className="px-4 py-2 text-yellow-700">
+                <th className="px-2 py-2">Tropa</th>
+
+                <th className="px-2 py-2 text-yellow-700">
                   <div className="flex items-center gap-1">
-                    {/* Tronco (Madeira) */}
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       className="w-4 h-4 fill-yellow-700"
                       viewBox="0 0 24 24"
                     >
                       <path d="M12 2L15 8H9l3-6zm0 20l-3-6h6l-3 6zM2 12l6-3v6l-6-3zm20 0l-6-3v6l6-3z" />
                     </svg>
-                    Madeira
+                    <span className="hidden sm:inline">Madeira</span>
+                    <span className="inline sm:hidden">M</span>
                   </div>
                 </th>
-                <th className="px-4 py-2 text-orange-700">
+
+                <th className="px-2 py-2 text-orange-700">
                   <div className="flex items-center gap-1">
-                    {/* Tijolo (Barro) */}
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       className="w-4 h-4 fill-orange-700"
                       viewBox="0 0 24 24"
                     >
                       <path d="M3 9h18v6H3V9zm0 8h8v2H3v-2zm10 0h8v2h-8v-2z" />
                     </svg>
-                    Barro
+                    <span className="hidden sm:inline">Barro</span>
+                    <span className="inline sm:hidden">B</span>
                   </div>
                 </th>
-                <th className="px-4 py-2 text-gray-800">
+
+                <th className="px-2 py-2 text-gray-800">
                   <div className="flex items-center gap-1">
-                    {/* Lingote (Ferro) */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-4 h-4 fill-gray-800"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="w-4 h-4 fill-gray-800" viewBox="0 0 24 24">
                       <path d="M2 17l5-9h10l5 9H2zm3 2h14v2H5v-2z" />
                     </svg>
-                    Ferro
+                    <span className="hidden sm:inline">Ferro</span>
+                    <span className="inline sm:hidden">F</span>
                   </div>
                 </th>
-                <th className="px-4 py-2 text-green-700">
+
+                <th className="px-2 py-2 text-green-700">
                   <div className="flex items-center gap-1">
-                    {/* Espiga (Cereal) */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-4 h-4 fill-green-700"
-                      viewBox="0 0 24 24"
-                    >
+                    <svg className="w-4 h-4 fill-green-700" viewBox="0 0 24 24">
                       <path d="M12 2c-2 4-2 8 0 12 2-4 2-8 0-12zm0 6c-1 2-1 4 0 6 1-2 1-4 0-6zm-6 2c0 4 2 8 6 10-2-4-2-8-6-10zm12 0c-4 2-4 6-6 10 4-2 6-6 6-10z" />
                     </svg>
-                    Cereal
+                    <span className="hidden sm:inline">Cereal</span>
+                    <span className="inline sm:hidden">C</span>
                   </div>
                 </th>
-                <th className="px-4 py-2">Ações</th>
+
+                <th className="px-2 py-2">Ações</th>
               </tr>
             </thead>
+
             <tbody>
               {tropas.map((t) => (
                 <tr key={t.id} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-2 font-semibold">{t.nome}</td>
-                  <td className="px-4 py-2">{t.custos.madeira}</td>
-                  <td className="px-4 py-2">{t.custos.barro}</td>
-                  <td className="px-4 py-2">{t.custos.ferro}</td>
-                  <td className="px-4 py-2">{t.custos.cereal}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-2 py-2 break-words">{t.nome}</td>
+                  <td className="px-2 py-2 break-words">{t.custos.madeira}</td>
+                  <td className="px-2 py-2 break-words">{t.custos.barro}</td>
+                  <td className="px-2 py-2 break-words">{t.custos.ferro}</td>
+                  <td className="px-2 py-2 break-words">{t.custos.cereal}</td>
+                  <td className="px-2 py-2">
                     <button
                       onClick={() => apagarTropa(t.id)}
                       className="text-red-600 hover:underline"
@@ -194,7 +190,7 @@ function Tropas() {
       {/* Cálculo */}
       <div className="p-6 bg-slate-50 rounded-lg shadow-md space-y-4">
         <h3 className="text-xl font-bold text-slate-800">Calcular recursos</h3>
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
           <select
             value={tropaSelecionada}
             onChange={(e) => setTropaSelecionada(e.target.value)}
