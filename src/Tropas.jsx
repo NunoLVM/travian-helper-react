@@ -102,7 +102,7 @@ function Tropas() {
       </div>
 
       {/* Tabela de tropas */}
-      <div className="p-6 bg-white rounded-lg shadow-md">
+      <div className="p-6 bg-gray-200 rounded-lg shadow-md">
         <h3 className="text-xl font-bold text-gray-800 mb-4">
           Tropas cadastradas
         </h3>
