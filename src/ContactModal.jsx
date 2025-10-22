@@ -77,7 +77,7 @@ const ContactModal = ({ idioma }) => {
     }, 400);
   };
 
-  const endpoint = "https://formspree.io/f/xnngkdob"; // teu link real
+  const endpoint = "https://formspree.io/f/xnngkdob";
 
   const validar = () => {
     const novosErros = {};
@@ -100,9 +100,9 @@ const ContactModal = ({ idioma }) => {
     setAEnviar(true);
 
     const form = new FormData();
-    form.append("nome", formData.nome);
     form.append("email", formData.email);
-    form.append("mensagem", formData.mensagem);
+    form.append("message", formData.mensagem);
+    form.append("name", formData.nome);
 
     try {
       const res = await fetch(endpoint, {
@@ -110,19 +110,21 @@ const ContactModal = ({ idioma }) => {
         body: form,
       });
 
-      if (res.ok) {
+      const texto = await res.text();
+      console.log("Resposta do Formspree:", texto);
+
+      if (res.ok && texto.includes("form submitted")) {
         setEnviado(true);
-        setAEnviar(false);
       } else {
         alert("Erro ao enviar. Tenta mais tarde.");
-        setAEnviar(false);
       }
     } catch (err) {
+      console.error("Erro de rede:", err);
       alert("Erro de rede. Tenta mais tarde.");
+    } finally {
       setAEnviar(false);
     }
   };
-
 
   useEffect(() => {
     if (enviado && contador > 0) {
@@ -153,7 +155,6 @@ const ContactModal = ({ idioma }) => {
                   ×
                 </button>
                 <p className="mb-4 text-green-600 font-medium">{textos[idioma].sucesso}</p>
-
                 <p className="text-xs text-gray-500">
                   {idioma === "fr"
                     ? `${textos.fr.compteur} ${contador} s…`
