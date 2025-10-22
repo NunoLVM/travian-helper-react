@@ -1,15 +1,68 @@
 import { useState } from "react";
 import { useTropas } from "./useTropas";
 
-function Tropas() {
+function Tropas({ idioma }) {
+  const textos = {
+    pt: {
+      titulo: "Tropas",
+      adicionar: "Adicionar nova tropa",
+      nome: "Nome da tropa",
+      madeira: "Madeira",
+      barro: "Barro",
+      ferro: "Ferro",
+      cereal: "Cereal",
+      cadastrar: "Adicionar tropa",
+      cadastradas: "Tropas cadastradas",
+      nenhuma: "Nenhuma tropa adicionada ainda.",
+      acoes: "Ações",
+      apagar: "Apagar",
+      calcular: "Calcular recursos",
+      selecione: "Selecione uma tropa",
+      quantidade: "Quantidade",
+      resultado: "Resultado",
+    },
+    en: {
+      titulo: "Troops",
+      adicionar: "Add new troop",
+      nome: "Troop name",
+      madeira: "Wood",
+      barro: "Clay",
+      ferro: "Iron",
+      cereal: "Crop",
+      cadastrar: "Add troop",
+      cadastradas: "Registered troops",
+      nenhuma: "No troops added yet.",
+      acoes: "Actions",
+      apagar: "Delete",
+      calcular: "Calculate resources",
+      selecione: "Select a troop",
+      quantidade: "Quantity",
+      resultado: "Result",
+    },
+    fr: {
+      titulo: "Troupes",
+      adicionar: "Ajouter une nouvelle troupe",
+      nome: "Nom de la troupe",
+      madeira: "Bois",
+      barro: "Argile",
+      ferro: "Fer",
+      cereal: "Céréales",
+      cadastrar: "Ajouter la troupe",
+      cadastradas: "Troupes enregistrées",
+      nenhuma: "Aucune troupe ajoutée pour l'instant.",
+      acoes: "Actions",
+      apagar: "Supprimer",
+      calcular: "Calculer les ressources",
+      selecione: "Sélectionnez une troupe",
+      quantidade: "Quantité",
+      resultado: "Résultat",
+    },
+  };
+
+  const t = textos[idioma];
   const { tropas, setTropas } = useTropas();
   const [nome, setNome] = useState("");
-  const [custos, setCustos] = useState({
-    madeira: "",
-    barro: "",
-    ferro: "",
-    cereal: "",
-  });
+  const [custos, setCustos] = useState({ madeira: "", barro: "", ferro: "", cereal: "" });
   const [quantidade, setQuantidade] = useState("");
   const [tropaSelecionada, setTropaSelecionada] = useState("");
   const [resultado, setResultado] = useState(null);
@@ -49,121 +102,70 @@ function Tropas() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-10 px-4 overflow-x-hidden">
-      <h2 className="text-3xl font-extrabold text-indigo-700">Tropas</h2>
+      <h2 className="text-3xl font-extrabold text-indigo-700">{t.titulo}</h2>
 
-      {/* Formulário de cadastro */}
       <div className="p-6 bg-indigo-50 rounded-lg shadow-md space-y-4">
-        <h3 className="text-xl font-bold text-indigo-800">
-          Adicionar nova tropa
-        </h3>
+        <h3 className="text-xl font-bold text-indigo-800">{t.adicionar}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
           <input
             type="text"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
-            placeholder="Nome da tropa"
+            placeholder={t.nome}
             className="col-span-1 border rounded px-3 py-2"
           />
           <input
             type="number"
             value={custos.madeira}
             onChange={(e) => setCustos({ ...custos, madeira: e.target.value })}
-            placeholder="Madeira"
+            placeholder={t.madeira}
             className="border rounded px-3 py-2"
           />
           <input
             type="number"
             value={custos.barro}
             onChange={(e) => setCustos({ ...custos, barro: e.target.value })}
-            placeholder="Barro"
+            placeholder={t.barro}
             className="border rounded px-3 py-2"
           />
           <input
             type="number"
             value={custos.ferro}
             onChange={(e) => setCustos({ ...custos, ferro: e.target.value })}
-            placeholder="Ferro"
+            placeholder={t.ferro}
             className="border rounded px-3 py-2"
           />
           <input
             type="number"
             value={custos.cereal}
             onChange={(e) => setCustos({ ...custos, cereal: e.target.value })}
-            placeholder="Cereal"
+            placeholder={t.cereal}
             className="border rounded px-3 py-2"
           />
         </div>
         <button
           onClick={adicionarTropa}
-          className="mt-4 bg-indigo-700 hover:bg-indigo-800 text-white px-6 py-2 rounded shadow"
-        >
-          Adicionar tropa
+          className="mt-4 bg-indigo-700 hover:bg-indigo-800 text-white px-6 py-2 rounded shadow">
+          {t.cadastrar}
         </button>
       </div>
 
-      {/* Tabela de tropas */}
       <div className="p-6 bg-gray-200 rounded-lg shadow-md">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">
-          Tropas cadastradas
-        </h3>
+        <h3 className="text-xl font-bold text-gray-800 mb-4">{t.cadastradas}</h3>
         {tropas.length === 0 ? (
-          <p className="text-gray-500">Nenhuma tropa adicionada ainda.</p>
+          <p className="text-gray-500">{t.nenhuma}</p>
         ) : (
           <table className="w-full border-collapse table-fixed text-sm">
             <thead>
               <tr className="bg-gray-100 text-left">
-                <th className="px-2 py-2">Tropa</th>
-
-                <th className="px-2 py-2 text-yellow-700">
-                  <div className="flex items-center gap-1">
-                    <svg
-                      className="w-4 h-4 fill-yellow-700"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2L15 8H9l3-6zm0 20l-3-6h6l-3 6zM2 12l6-3v6l-6-3zm20 0l-6-3v6l6-3z" />
-                    </svg>
-                    <span className="hidden sm:inline">Madeira</span>
-                    <span className="inline sm:hidden">M</span>
-                  </div>
-                </th>
-
-                <th className="px-2 py-2 text-orange-700">
-                  <div className="flex items-center gap-1">
-                    <svg
-                      className="w-4 h-4 fill-orange-700"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M3 9h18v6H3V9zm0 8h8v2H3v-2zm10 0h8v2h-8v-2z" />
-                    </svg>
-                    <span className="hidden sm:inline">Barro</span>
-                    <span className="inline sm:hidden">B</span>
-                  </div>
-                </th>
-
-                <th className="px-2 py-2 text-gray-800">
-                  <div className="flex items-center gap-1">
-                    <svg className="w-4 h-4 fill-gray-800" viewBox="0 0 24 24">
-                      <path d="M2 17l5-9h10l5 9H2zm3 2h14v2H5v-2z" />
-                    </svg>
-                    <span className="hidden sm:inline">Ferro</span>
-                    <span className="inline sm:hidden">F</span>
-                  </div>
-                </th>
-
-                <th className="px-2 py-2 text-green-700">
-                  <div className="flex items-center gap-1">
-                    <svg className="w-4 h-4 fill-green-700" viewBox="0 0 24 24">
-                      <path d="M12 2c-2 4-2 8 0 12 2-4 2-8 0-12zm0 6c-1 2-1 4 0 6 1-2 1-4 0-6zm-6 2c0 4 2 8 6 10-2-4-2-8-6-10zm12 0c-4 2-4 6-6 10 4-2 6-6 6-10z" />
-                    </svg>
-                    <span className="hidden sm:inline">Cereal</span>
-                    <span className="inline sm:hidden">C</span>
-                  </div>
-                </th>
-
-                <th className="px-2 py-2">Ações</th>
+                <th className="px-2 py-2">{t.nome}</th>
+                <th className="px-2 py-2 text-yellow-700">{t.madeira}</th>
+                <th className="px-2 py-2 text-orange-700">{t.barro}</th>
+                <th className="px-2 py-2 text-gray-800">{t.ferro}</th>
+                <th className="px-2 py-2 text-green-700">{t.cereal}</th>
+                <th className="px-2 py-2">{t.acoes}</th>
               </tr>
             </thead>
-
             <tbody>
               {tropas.map((t) => (
                 <tr key={t.id} className="border-b hover:bg-gray-50">
@@ -173,11 +175,8 @@ function Tropas() {
                   <td className="px-2 py-2 break-words">{t.custos.ferro}</td>
                   <td className="px-2 py-2 break-words">{t.custos.cereal}</td>
                   <td className="px-2 py-2">
-                    <button
-                      onClick={() => apagarTropa(t.id)}
-                      className="text-red-600 hover:underline"
-                    >
-                      Apagar
+                    <button onClick={() => apagarTropa(t.id)} className="text-red-600 hover:underline">
+                      {t.apagar}
                     </button>
                   </td>
                 </tr>
@@ -187,16 +186,14 @@ function Tropas() {
         )}
       </div>
 
-      {/* Cálculo */}
       <div className="p-6 bg-slate-50 rounded-lg shadow-md space-y-4">
-        <h3 className="text-xl font-bold text-slate-800">Calcular recursos</h3>
+        <h3 className="text-xl font-bold text-slate-800">{t.calcular}</h3>
         <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
           <select
             value={tropaSelecionada}
             onChange={(e) => setTropaSelecionada(e.target.value)}
-            className="border rounded px-3 py-2"
-          >
-            <option value="">Selecione uma tropa</option>
+            className="border rounded px-3 py-2">
+            <option value="">{t.selecione}</option>
             {tropas.map((t) => (
               <option key={t.id} value={t.id}>
                 {t.nome}
@@ -208,15 +205,12 @@ function Tropas() {
             type="number"
             value={quantidade}
             onChange={(e) => setQuantidade(e.target.value)}
-            placeholder="Quantidade"
+            placeholder={t.quantidade}
             className="border rounded px-3 py-2"
           />
 
-          <button
-            onClick={calcular}
-            className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded shadow"
-          >
-            Calcular
+          <button onClick={calcular} className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded shadow">
+            {t.calcular}
           </button>
         </div>
 
@@ -227,44 +221,28 @@ function Tropas() {
             </h4>
             <div className="grid grid-cols-4 gap-4 text-sm">
               <div className="flex items-center gap-1 text-yellow-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 fill-yellow-700"
-                  viewBox="0 0 24 24"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-yellow-700" viewBox="0 0 24 24">
                   <path d="M12 2L15 8H9l3-6zm0 20l-3-6h6l-3 6zM2 12l6-3v6l-6-3zm20 0l-6-3v6l6-3z" />
                 </svg>
-                Madeira: {resultado.total.madeira}
+                {t.madeira}: {resultado.total.madeira}
               </div>
               <div className="flex items-center gap-1 text-orange-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 fill-orange-700"
-                  viewBox="0 0 24 24"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-orange-700" viewBox="0 0 24 24">
                   <path d="M3 9h18v6H3V9zm0 8h8v2H3v-2zm10 0h8v2h-8v-2z" />
                 </svg>
-                Barro: {resultado.total.barro}
+                {t.barro}: {resultado.total.barro}
               </div>
               <div className="flex items-center gap-1 text-gray-800">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 fill-gray-800"
-                  viewBox="0 0 24 24"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-gray-800" viewBox="0 0 24 24">
                   <path d="M2 17l5-9h10l5 9H2zm3 2h14v2H5v-2z" />
                 </svg>
-                Ferro: {resultado.total.ferro}
+                {t.ferro}: {resultado.total.ferro}
               </div>
               <div className="flex items-center gap-1 text-green-700">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 fill-green-700"
-                  viewBox="0 0 24 24"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-green-700" viewBox="0 0 24 24">
                   <path d="M12 2c-2 4-2 8 0 12 2-4 2-8 0-12zm0 6c-1 2-1 4 0 6 1-2 1-4 0-6zm-6 2c0 4 2 8 6 10-2-4-2-8-6-10zm12 0c-4 2-4 6-6 10 4-2 6-6 6-10z" />
                 </svg>
-                Cereal: {resultado.total.cereal}
+                {t.cereal}: {resultado.total.cereal}
               </div>
             </div>
           </div>

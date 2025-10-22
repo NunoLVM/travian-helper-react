@@ -1,4 +1,7 @@
-# ⚔️ Travian Helper (React)
+# ⚔️ Travian Helper
+
+🇵🇹 [Português](./README.md) | 🇬🇧 [English](./README.en.md) | 🇫🇷 [Français](./README.fr.md)
+
 
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=FFD62E)](https://vitejs.dev/)
