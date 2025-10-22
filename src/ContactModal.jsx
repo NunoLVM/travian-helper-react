@@ -152,9 +152,8 @@ const ContactModal = ({ idioma }) => {
                   className="absolute top-2 right-3 text-gray-500 hover:text-gray-700 text-xl">
                   ×
                 </button>
-                <p className="mb-4 text-green-600 font-medium">
-                  {idioma === "fr" ? textos.fr.succes : idioma === "en" ? textos.en.sucesso : textos.pt.sucesso}
-                </p>
+                <p className="mb-4 text-green-600 font-medium">{textos[idioma].sucesso}</p>
+
                 <p className="text-xs text-gray-500">
                   {idioma === "fr"
                     ? `${textos.fr.compteur} ${contador} s…`
