@@ -108,15 +108,16 @@ const ContactModal = ({ idioma }) => {
       const res = await fetch(endpoint, {
         method: "POST",
         body: form,
+        headers: { Accept: "application/json" },
       });
 
-      const texto = await res.text();
-      console.log("Resposta do Formspree:", texto);
+      const data = await res.json();
 
-      if (res.ok && texto.includes("form submitted")) {
+      if (res.ok) {
         setEnviado(true);
       } else {
         alert("Erro ao enviar. Tenta mais tarde.");
+        console.error("Erro Formspree:", data);
       }
     } catch (err) {
       console.error("Erro de rede:", err);
@@ -124,6 +125,7 @@ const ContactModal = ({ idioma }) => {
     } finally {
       setAEnviar(false);
     }
+
   };
 
   useEffect(() => {
