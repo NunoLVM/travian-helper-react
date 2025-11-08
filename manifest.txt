@@ -26,11 +26,15 @@
 ./public/vite.svg
 ./README.md
 ./src
+./src/AboutModal.jsx
 ./src/App.css
 ./src/App.jsx
 ./src/assets
 ./src/assets/react.svg
+./src/ContactModal.jsx
+./src/Footer.jsx
 ./src/index.css
+./src/LegalModal.jsx
 ./src/main.jsx
 ./src/Recursos.jsx
 ./src/Relogio.jsx
@@ -38,6 +42,7 @@
 ./src/TropasContext.jsx
 ./src/TropasProvider.jsx
 ./src/useTropas.js
+./src/ZerarStocks.jsx
 ./tailwind.config.js
 ./vite-test.cjs
 ./vite.config.js
