@@ -102,10 +102,13 @@ function Tropas({ idioma }) {
 
   return (
     <div className="max-w-5xl mx-auto space-y-10 px-4 overflow-x-hidden">
-      <h2 className="text-3xl font-extrabold text-indigo-700">{t.titulo}</h2>
+<h2 className="text-3xl font-extrabold text-indigo-700 animate-fade-in">{t.titulo}</h2>
 
-      <div className="p-6 bg-indigo-50 rounded-lg shadow-md space-y-4">
-        <h3 className="text-xl font-bold text-indigo-800">{t.adicionar}</h3>
+{/* Formulário de cadastro */}
+<div className="p-6 bg-indigo-50 rounded-lg shadow-md space-y-4 animate-fade-in">
+  <h3 className="text-xl font-bold text-indigo-800">{t.adicionar}</h3>
+</div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
           <input
             type="text"
@@ -150,8 +153,18 @@ function Tropas({ idioma }) {
         </button>
       </div>
 
-      <div className="p-6 bg-gray-200 rounded-lg shadow-md">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">{t.cadastradas}</h3>
+<h2 className="text-4xl font-extrabold text-green-700 animate-fade-in">{t.titulo}</h2>
+
+{/* Bloco: formulário */}
+<div className="rounded-lg overflow-hidden shadow-lg border animate-fade-in">
+  <div className="bg-slate-700 text-white px-6 py-3 text-xl font-bold">{t.formulario}</div>
+</div>
+
+{/* Bloco: botão */}
+<button className="bg-blue-600 text-white px-4 py-2 rounded animate-fade-in">
+  {t.adicionar}
+</button>
+
         {tropas.length === 0 ? (
           <p className="text-gray-500">{t.nenhuma}</p>
         ) : (
@@ -186,8 +199,11 @@ function Tropas({ idioma }) {
         )}
       </div>
 
-      <div className="p-6 bg-slate-50 rounded-lg shadow-md space-y-4">
-        <h3 className="text-xl font-bold text-slate-800">{t.calcular}</h3>
+{/* Cálculo */}
+<div className="p-6 bg-slate-50 rounded-lg shadow-md space-y-4 animate-fade-in">
+  <h3 className="text-xl font-bold text-slate-800">{t.calcular}</h3>
+</div>
+
         <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
           <select
             value={tropaSelecionada}

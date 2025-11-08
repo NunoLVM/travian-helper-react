@@ -71,10 +71,12 @@ function Recursos({ idioma }) {
 
   return (
     <div className="max-w-[1200px] mx-auto space-y-10">
-      <h2 className="text-4xl font-extrabold text-green-700">{t.titulo}</h2>
+<h2 className="text-4xl font-extrabold text-green-700 animate-fade-in">{t.titulo}</h2>
 
-      <div className="rounded-lg overflow-hidden shadow-lg border">
-        <div className="bg-emerald-700 text-white px-6 py-3 text-xl font-bold">{t.atuais}</div>
+<div className="rounded-lg overflow-hidden shadow-lg border animate-fade-in">
+  <div className="bg-emerald-700 text-white px-6 py-3 text-xl font-bold">{t.atuais}</div>
+</div>
+
         <div className="bg-emerald-50 px-6 py-6 grid grid-cols-4 gap-8">
           <Campo
             label={`${t.madeira} atual`}
@@ -107,8 +109,13 @@ function Recursos({ idioma }) {
         </div>
       </div>
 
-      <div className="rounded-lg overflow-hidden shadow-lg border">
-        <div className="bg-indigo-700 text-white px-6 py-3 text-xl font-bold">{t.necessarios}</div>
+{/* Bloco: necessários */}
+<div className="rounded-lg overflow-hidden shadow-lg border animate-fade-in">
+  <div className="bg-emerald-700 text-white px-6 py-3 text-xl font-bold">
+    {t.necessarios}
+  </div>
+</div>
+
         <div className="bg-indigo-50 px-6 py-6 grid grid-cols-4 gap-8">
           <Campo
             label={`${t.madeira} necessária`}
@@ -151,8 +158,9 @@ function Recursos({ idioma }) {
       </div>
 
       {faltam && (
-        <div className="rounded-lg overflow-hidden shadow-md border">
-          <div className="bg-slate-700 text-white px-6 py-3 text-lg font-bold">{t.resultado}</div>
+<div className="rounded-lg overflow-hidden shadow-md border animate-fade-in">
+  <div className="bg-slate-700 text-white px-6 py-3 text-lg font-bold">{t.resultado}</div>
+
           <div className="bg-slate-50 px-6 py-6 grid grid-cols-2 gap-6 text-lg">
             <div>
               <span className="text-yellow-700 font-bold">{t.madeira}:</span> {faltam.madeira}

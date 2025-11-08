@@ -3,6 +3,7 @@ import Recursos from "./Recursos";
 import Tropas from "./Tropas";
 import Relogio from "./Relogio";
 import Footer from "./Footer";
+import ZerarStocks from "./ZerarStocks"; // ✅ Adicionado
 
 function App() {
   const [aba, setAba] = useState("recursos");
@@ -13,16 +14,19 @@ function App() {
       titulo: "Ajudante Travian",
       recursos: "Recursos",
       tropas: "Tropas",
+      zerar: "Zerar Stocks", // ✅ Adicionado
     },
     en: {
       titulo: "Travian Helper",
       recursos: "Resources",
       tropas: "Troops",
+      zerar: "Zero Stocks", // ✅ Adicionado
     },
     fr: {
       titulo: "Assistant Travian",
       recursos: "Ressources",
       tropas: "Troupes",
+      zerar: "Vider les stocks", // ✅ Adicionado
     },
   };
 
@@ -97,11 +101,23 @@ function App() {
             }`}>
             {textos[idioma].tropas}
           </button>
+
+          {/* ✅ Botão novo */}
+          <button
+            onClick={() => setAba("zerar")}
+            className={`px-6 py-3 rounded-full text-sm font-bold shadow border transition ${
+              aba === "zerar"
+                ? "bg-red-600 text-white border-red-700"
+                : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
+            }`}>
+            {textos[idioma].zerar}
+          </button>
         </div>
 
         {/* Conteúdo das abas */}
         {aba === "recursos" && <Recursos idioma={idioma} />}
         {aba === "tropas" && <Tropas idioma={idioma} />}
+        {aba === "zerar" && <ZerarStocks idioma={idioma} />} {/* ✅ Conteúdo novo */}
       </div>
 
       {/* Footer fixo no fundo */}
