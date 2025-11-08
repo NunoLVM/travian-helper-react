@@ -34,10 +34,10 @@ function Recursos() {
 
   return (
     <div className="max-w-[1200px] mx-auto space-y-10">
-      <h2 className="text-4xl font-extrabold text-green-700">Recursos</h2>
+      <h2 className="text-4xl font-extrabold text-green-700 animate-fade-in">Recursos</h2>
 
       {/* Bloco: atuais */}
-      <div className="rounded-lg overflow-hidden shadow-lg border">
+      <div className="rounded-lg overflow-hidden shadow-lg border animate-fade-in">
         <div className="bg-emerald-700 text-white px-6 py-3 text-xl font-bold">
           Recursos atuais da aldeia
         </div>
@@ -74,7 +74,7 @@ function Recursos() {
       </div>
 
       {/* Bloco: necessários */}
-      <div className="rounded-lg overflow-hidden shadow-lg border">
+      <div className="rounded-lg overflow-hidden shadow-lg border animate-fade-in">
         <div className="bg-indigo-700 text-white px-6 py-3 text-xl font-bold">
           Recursos necessários para ação
         </div>
@@ -123,7 +123,7 @@ function Recursos() {
 
       {/* Resultado */}
       {faltam && (
-        <div className="rounded-lg overflow-hidden shadow-md border">
+        <div className="rounded-lg overflow-hidden shadow-md border animate-fade-in">
           <div className="bg-slate-700 text-white px-6 py-3 text-lg font-bold">Resultado</div>
           <div className="bg-slate-50 px-6 py-6 grid grid-cols-2 gap-6 text-lg">
             <div><span className="text-yellow-700 font-bold">Madeira:</span> {faltam.madeira}</div>

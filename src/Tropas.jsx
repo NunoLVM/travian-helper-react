@@ -49,10 +49,10 @@ function Tropas() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-10 px-4 overflow-x-hidden">
-      <h2 className="text-3xl font-extrabold text-indigo-700">Tropas</h2>
+      <h2 className="text-3xl font-extrabold text-indigo-700 animate-fade-in">Tropas</h2>
 
       {/* Formulário de cadastro */}
-      <div className="p-6 bg-indigo-50 rounded-lg shadow-md space-y-4">
+      <div className="p-6 bg-indigo-50 rounded-lg shadow-md space-y-4 animate-fade-in">
         <h3 className="text-xl font-bold text-indigo-800">
           Adicionar nova tropa
         </h3>
@@ -102,7 +102,7 @@ function Tropas() {
       </div>
 
       {/* Tabela de tropas */}
-      <div className="p-6 bg-gray-200 rounded-lg shadow-md">
+      <div className="p-6 bg-gray-200 rounded-lg shadow-md animate-fade-in">
         <h3 className="text-xl font-bold text-gray-800 mb-4">
           Tropas cadastradas
         </h3>
@@ -188,7 +188,7 @@ function Tropas() {
       </div>
 
       {/* Cálculo */}
-      <div className="p-6 bg-slate-50 rounded-lg shadow-md space-y-4">
+      <div className="p-6 bg-slate-50 rounded-lg shadow-md space-y-4 animate-fade-in">
         <h3 className="text-xl font-bold text-slate-800">Calcular recursos</h3>
         <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
           <select
