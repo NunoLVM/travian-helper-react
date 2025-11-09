@@ -10,33 +10,42 @@ function ZerarStocks({ idioma }) {
     pt: {
       titulo: "Zerar Stocks",
       selecione: "Selecione uma tropa",
-      madeira: "Madeira",
-      barro: "Barro",
-      ferro: "Ferro",
+      madeira_label: "Stock de madeira",
+      barro_label: "Stock de barro",
+      ferro_label: "Stock de ferro",
+      madeira_placeholder: "Ex: 1200",
+      barro_placeholder: "Ex: 800",
+      ferro_placeholder: "Ex: 950",
       resultado: "Recursos em falta para zerar",
       limpar: "Limpar",
     },
     en: {
       titulo: "Zero Stocks",
       selecione: "Select a troop",
-      madeira: "Wood",
-      barro: "Clay",
-      ferro: "Iron",
+      madeira_label: "Wood stock",
+      barro_label: "Clay stock",
+      ferro_label: "Iron stock",
+      madeira_placeholder: "e.g. 1200",
+      barro_placeholder: "e.g. 800",
+      ferro_placeholder: "e.g. 950",
       resultado: "Missing resources to zero out",
       limpar: "Clear",
     },
     fr: {
       titulo: "Vider les stocks",
       selecione: "Sélectionnez une troupe",
-      madeira: "Bois",
-      barro: "Argile",
-      ferro: "Fer",
+      madeira_label: "Stock de bois",
+      barro_label: "Stock d'argile",
+      ferro_label: "Stock de fer",
+      madeira_placeholder: "ex : 1200",
+      barro_placeholder: "ex : 800",
+      ferro_placeholder: "ex : 950",
       resultado: "Ressources manquantes pour vider",
       limpar: "Effacer",
     },
   };
 
-  const t = textos[idioma] || textos.pt;
+  const t = textos[idioma] ?? textos.pt;
   const tropa = tropas.find((t) => t.id === Number(tropaSelecionada));
 
   const tropasPossiveis = tropa
@@ -72,48 +81,51 @@ function ZerarStocks({ idioma }) {
         {t.titulo}
       </h2>
 
-      {/* Seleção de tropa */}
-      <div className="space-y-4 animate-fade-in">
-        <select
-          value={tropaSelecionada}
-          onChange={(e) => setTropaSelecionada(e.target.value)}
-          className="border rounded px-3 py-2 w-full max-w-sm mx-auto"
-        >
-          <option value="">{t.selecione}</option>
-          {tropas.map((t) => (
-            <option key={t.id} value={t.id}>
-              {t.nome}
-            </option>
+      {/* Bloco visual unificado */}
+      <div className="p-6 bg-red-50 rounded-lg shadow-md border space-y-6 animate-fade-in">
+        {/* Seleção de tropa */}
+        <div className="max-w-sm mx-auto">
+          <select
+            value={tropaSelecionada}
+            onChange={(e) => setTropaSelecionada(e.target.value)}
+            className="border rounded px-3 py-2 w-full"
+          >
+            <option value="">{t.selecione}</option>
+            {tropas.map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Inputs de stock atual */}
+        <div className="grid grid-cols-3 gap-6">
+          {["madeira", "barro", "ferro"].map((r) => (
+            <div key={r} className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-gray-700">
+                {t[`${r}_label`]}
+              </label>
+              <input
+                type="number"
+                value={stock[r]}
+                onChange={(e) => setStock({ ...stock, [r]: e.target.value })}
+                placeholder={t[`${r}_placeholder`]}
+                className="w-full h-12 px-4 rounded-md border border-gray-400 bg-white focus:outline-none focus:ring-2 focus:ring-red-500"
+              />
+            </div>
           ))}
-        </select>
-      </div>
+        </div>
 
-      {/* Inputs de stock atual */}
-      <div className="grid grid-cols-3 gap-6 mt-6 animate-fade-in">
-        {["madeira", "barro", "ferro"].map((r) => (
-          <div key={r} className="flex flex-col gap-1">
-            <label className="text-sm font-medium capitalize text-gray-700">
-              {t[r]}
-            </label>
-            <input
-              type="number"
-              value={stock[r]}
-              onChange={(e) => setStock({ ...stock, [r]: e.target.value })}
-              placeholder={`Stock de ${t[r]}`}
-              className="w-full h-12 px-4 rounded-md border border-gray-400 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Botão limpar */}
-      <div className="flex justify-center mt-4 animate-fade-in">
-        <button
-          onClick={limpar}
-          className="flex items-center gap-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold px-6 py-2 rounded-full shadow transition"
-        >
-          🧹 {t.limpar}
-        </button>
+        {/* Botão limpar */}
+        <div className="flex justify-center">
+          <button
+            onClick={limpar}
+            className="flex items-center gap-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold px-6 py-2 rounded-full shadow transition"
+          >
+            🧹 {t.limpar}
+          </button>
+        </div>
       </div>
 
       {/* Resultado */}
@@ -124,13 +136,13 @@ function ZerarStocks({ idioma }) {
           </div>
           <div className="bg-red-50 px-6 py-6 grid grid-cols-3 gap-6 text-lg">
             <div>
-              <span className="text-yellow-700 font-bold">{t.madeira}:</span> {faltam.madeira}
+              <span className="text-yellow-700 font-bold">{t.madeira_label}:</span> {faltam.madeira}
             </div>
             <div>
-              <span className="text-orange-700 font-bold">{t.barro}:</span> {faltam.barro}
+              <span className="text-orange-700 font-bold">{t.barro_label}:</span> {faltam.barro}
             </div>
             <div>
-              <span className="text-gray-800 font-bold">{t.ferro}:</span> {faltam.ferro}
+              <span className="text-gray-800 font-bold">{t.ferro_label}:</span> {faltam.ferro}
             </div>
           </div>
         </div>

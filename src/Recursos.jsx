@@ -24,10 +24,14 @@ function Recursos({ idioma }) {
       necessarios: "Recursos necessários para ação",
       calcular: "Calcular recursos em falta",
       resultado: "Resultado",
-      madeira: "Madeira",
-      barro: "Barro",
-      ferro: "Ferro",
-      cereal: "Cereal",
+      madeira_atual: "Madeira atual",
+      barro_atual: "Barro atual",
+      ferro_atual: "Ferro atual",
+      cereal_atual: "Cereal atual",
+      madeira_necessaria: "Madeira necessária",
+      barro_necessaria: "Barro necessário",
+      ferro_necessaria: "Ferro necessário",
+      cereal_necessaria: "Cereal necessário",
     },
     en: {
       titulo: "Resources",
@@ -35,10 +39,14 @@ function Recursos({ idioma }) {
       necessarios: "Resources needed for action",
       calcular: "Calculate missing resources",
       resultado: "Result",
-      madeira: "Wood",
-      barro: "Clay",
-      ferro: "Iron",
-      cereal: "Crop",
+      madeira_atual: "Current wood",
+      barro_atual: "Current clay",
+      ferro_atual: "Current iron",
+      cereal_atual: "Current crop",
+      madeira_necessaria: "Required wood",
+      barro_necessaria: "Required clay",
+      ferro_necessaria: "Required iron",
+      cereal_necessaria: "Required crop",
     },
     fr: {
       titulo: "Ressources",
@@ -46,18 +54,21 @@ function Recursos({ idioma }) {
       necessarios: "Ressources nécessaires pour l'action",
       calcular: "Calculer les ressources manquantes",
       resultado: "Résultat",
-      madeira: "Bois",
-      barro: "Argile",
-      ferro: "Fer",
-      cereal: "Céréales",
+      madeira_atual: "Bois actuel",
+      barro_atual: "Argile actuelle",
+      ferro_atual: "Fer actuel",
+      cereal_atual: "Céréales actuelles",
+      madeira_necessaria: "Bois nécessaire",
+      barro_necessaria: "Argile nécessaire",
+      ferro_necessaria: "Fer nécessaire",
+      cereal_necessaria: "Céréales nécessaires",
     },
   };
 
+  const t = textos[idioma] ?? textos["pt"];
   const [atuais, setAtuais] = useState({ madeira: "", barro: "", ferro: "", cereal: "" });
   const [necessarios, setNecessarios] = useState({ madeira: "", barro: "", ferro: "", cereal: "" });
   const [faltam, setFaltam] = useState(null);
-
-  const t = textos[idioma] || textos["pt"];
 
   const calcularFaltam = () => {
     const resultado = {
@@ -79,10 +90,10 @@ function Recursos({ idioma }) {
       </div>
 
       <div className="bg-emerald-50 px-6 py-6 grid grid-cols-4 gap-8">
-        <Campo label={`${t.madeira} atual`} value={atuais.madeira} onChange={(v) => setAtuais({ ...atuais, madeira: v })} placeholder="Ex: 1200" color="text-yellow-700" />
-        <Campo label={`${t.barro} atual`} value={atuais.barro} onChange={(v) => setAtuais({ ...atuais, barro: v })} placeholder="Ex: 800" color="text-orange-700" />
-        <Campo label={`${t.ferro} atual`} value={atuais.ferro} onChange={(v) => setAtuais({ ...atuais, ferro: v })} placeholder="Ex: 950" color="text-gray-800" />
-        <Campo label={`${t.cereal} atual`} value={atuais.cereal} onChange={(v) => setAtuais({ ...atuais, cereal: v })} placeholder="Ex: 700" color="text-green-700" />
+        <Campo label={t.madeira_atual} value={atuais.madeira} onChange={(v) => setAtuais({ ...atuais, madeira: v })} placeholder="Ex: 1200" color="text-yellow-700" />
+        <Campo label={t.barro_atual} value={atuais.barro} onChange={(v) => setAtuais({ ...atuais, barro: v })} placeholder="Ex: 800" color="text-orange-700" />
+        <Campo label={t.ferro_atual} value={atuais.ferro} onChange={(v) => setAtuais({ ...atuais, ferro: v })} placeholder="Ex: 950" color="text-gray-800" />
+        <Campo label={t.cereal_atual} value={atuais.cereal} onChange={(v) => setAtuais({ ...atuais, cereal: v })} placeholder="Ex: 700" color="text-green-700" />
       </div>
 
       {/* Bloco: necessários */}
@@ -91,10 +102,10 @@ function Recursos({ idioma }) {
       </div>
 
       <div className="bg-indigo-50 px-6 py-6 grid grid-cols-4 gap-8">
-        <Campo label={`${t.madeira} necessária`} value={necessarios.madeira} onChange={(v) => setNecessarios({ ...necessarios, madeira: v })} placeholder="Ex: 2000" color="text-yellow-700" />
-        <Campo label={`${t.barro} necessário`} value={necessarios.barro} onChange={(v) => setNecessarios({ ...necessarios, barro: v })} placeholder="Ex: 1500" color="text-orange-700" />
-        <Campo label={`${t.ferro} necessário`} value={necessarios.ferro} onChange={(v) => setNecessarios({ ...necessarios, ferro: v })} placeholder="Ex: 1800" color="text-gray-800" />
-        <Campo label={`${t.cereal} necessário`} value={necessarios.cereal} onChange={(v) => setNecessarios({ ...necessarios, cereal: v })} placeholder="Ex: 1200" color="text-green-700" />
+        <Campo label={t.madeira_necessaria} value={necessarios.madeira} onChange={(v) => setNecessarios({ ...necessarios, madeira: v })} placeholder="Ex: 2000" color="text-yellow-700" />
+        <Campo label={t.barro_necessaria} value={necessarios.barro} onChange={(v) => setNecessarios({ ...necessarios, barro: v })} placeholder="Ex: 1500" color="text-orange-700" />
+        <Campo label={t.ferro_necessaria} value={necessarios.ferro} onChange={(v) => setNecessarios({ ...necessarios, ferro: v })} placeholder="Ex: 1800" color="text-gray-800" />
+        <Campo label={t.cereal_necessaria} value={necessarios.cereal} onChange={(v) => setNecessarios({ ...necessarios, cereal: v })} placeholder="Ex: 1200" color="text-green-700" />
       </div>
 
       {/* Botão */}
@@ -113,10 +124,10 @@ function Recursos({ idioma }) {
         <div className="rounded-lg overflow-hidden shadow-md border animate-fade-in">
           <div className="bg-slate-700 text-white px-6 py-3 text-lg font-bold">{t.resultado}</div>
           <div className="bg-slate-50 px-6 py-6 grid grid-cols-2 gap-6 text-lg">
-            <div><span className="text-yellow-700 font-bold">{t.madeira}:</span> {faltam.madeira}</div>
-            <div><span className="text-orange-700 font-bold">{t.barro}:</span> {faltam.barro}</div>
-            <div><span className="text-gray-800 font-bold">{t.ferro}:</span> {faltam.ferro}</div>
-            <div><span className="text-green-700 font-bold">{t.cereal}:</span> {faltam.cereal}</div>
+            <div><span className="text-yellow-700 font-bold">{t.madeira_necessaria}:</span> {faltam.madeira}</div>
+            <div><span className="text-orange-700 font-bold">{t.barro_necessaria}:</span> {faltam.barro}</div>
+            <div><span className="text-gray-800 font-bold">{t.ferro_necessaria}:</span> {faltam.ferro}</div>
+            <div><span className="text-green-700 font-bold">{t.cereal_necessaria}:</span> {faltam.cereal}</div>
           </div>
         </div>
       )}
