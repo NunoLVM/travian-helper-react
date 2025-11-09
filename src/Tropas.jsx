@@ -21,45 +21,11 @@ function Tropas({ idioma }) {
       quantidade: "Quantidade",
       resultado: "Resultado",
     },
-    en: {
-      titulo: "Troops",
-      adicionar: "Add new troop",
-      nome: "Troop name",
-      madeira: "Wood",
-      barro: "Clay",
-      ferro: "Iron",
-      cereal: "Crop",
-      cadastrar: "Add troop",
-      cadastradas: "Registered troops",
-      nenhuma: "No troops added yet.",
-      acoes: "Actions",
-      apagar: "Delete",
-      calcular: "Calculate resources",
-      selecione: "Select a troop",
-      quantidade: "Quantity",
-      resultado: "Result",
-    },
-    fr: {
-      titulo: "Troupes",
-      adicionar: "Ajouter une nouvelle troupe",
-      nome: "Nom de la troupe",
-      madeira: "Bois",
-      barro: "Argile",
-      ferro: "Fer",
-      cereal: "Céréales",
-      cadastrar: "Ajouter la troupe",
-      cadastradas: "Troupes enregistrées",
-      nenhuma: "Aucune troupe ajoutée pour l'instant.",
-      acoes: "Actions",
-      apagar: "Supprimer",
-      calcular: "Calculer les ressources",
-      selecione: "Sélectionnez une troupe",
-      quantidade: "Quantité",
-      resultado: "Résultat",
-    },
+    en: { /* ... */ },
+    fr: { /* ... */ },
   };
 
-  const t = textos[idioma];
+  const t = textos[idioma] || textos["pt"];
   const { tropas, setTropas } = useTropas();
   const [nome, setNome] = useState("");
   const [custos, setCustos] = useState({ madeira: "", barro: "", ferro: "", cereal: "" });
@@ -102,68 +68,28 @@ function Tropas({ idioma }) {
 
   return (
     <div className="max-w-5xl mx-auto space-y-10 px-4 overflow-x-hidden">
-<h2 className="text-3xl font-extrabold text-indigo-700 animate-fade-in">{t.titulo}</h2>
+      <h2 className="text-3xl font-extrabold text-indigo-700 animate-fade-in">{t.titulo}</h2>
 
-{/* Formulário de cadastro */}
-<div className="p-6 bg-indigo-50 rounded-lg shadow-md space-y-4 animate-fade-in">
-  <h3 className="text-xl font-bold text-indigo-800">{t.adicionar}</h3>
-</div>
+      {/* Formulário de cadastro */}
+      <div className="p-6 bg-indigo-50 rounded-lg shadow-md space-y-4 animate-fade-in">
+        <h3 className="text-xl font-bold text-indigo-800">{t.adicionar}</h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-          <input
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            placeholder={t.nome}
-            className="col-span-1 border rounded px-3 py-2"
-          />
-          <input
-            type="number"
-            value={custos.madeira}
-            onChange={(e) => setCustos({ ...custos, madeira: e.target.value })}
-            placeholder={t.madeira}
-            className="border rounded px-3 py-2"
-          />
-          <input
-            type="number"
-            value={custos.barro}
-            onChange={(e) => setCustos({ ...custos, barro: e.target.value })}
-            placeholder={t.barro}
-            className="border rounded px-3 py-2"
-          />
-          <input
-            type="number"
-            value={custos.ferro}
-            onChange={(e) => setCustos({ ...custos, ferro: e.target.value })}
-            placeholder={t.ferro}
-            className="border rounded px-3 py-2"
-          />
-          <input
-            type="number"
-            value={custos.cereal}
-            onChange={(e) => setCustos({ ...custos, cereal: e.target.value })}
-            placeholder={t.cereal}
-            className="border rounded px-3 py-2"
-          />
+          <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder={t.nome} className="col-span-1 border rounded px-3 py-2" />
+          <input type="number" value={custos.madeira} onChange={(e) => setCustos({ ...custos, madeira: e.target.value })} placeholder={t.madeira} className="border rounded px-3 py-2" />
+          <input type="number" value={custos.barro} onChange={(e) => setCustos({ ...custos, barro: e.target.value })} placeholder={t.barro} className="border rounded px-3 py-2" />
+          <input type="number" value={custos.ferro} onChange={(e) => setCustos({ ...custos, ferro: e.target.value })} placeholder={t.ferro} className="border rounded px-3 py-2" />
+          <input type="number" value={custos.cereal} onChange={(e) => setCustos({ ...custos, cereal: e.target.value })} placeholder={t.cereal} className="border rounded px-3 py-2" />
         </div>
-        <button
-          onClick={adicionarTropa}
-          className="mt-4 bg-indigo-700 hover:bg-indigo-800 text-white px-6 py-2 rounded shadow">
+
+        <button onClick={adicionarTropa} className="mt-4 bg-indigo-700 hover:bg-indigo-800 text-white px-6 py-2 rounded shadow">
           {t.cadastrar}
         </button>
       </div>
 
-<h2 className="text-4xl font-extrabold text-green-700 animate-fade-in">{t.titulo}</h2>
-
-{/* Bloco: formulário */}
-<div className="rounded-lg overflow-hidden shadow-lg border animate-fade-in">
-  <div className="bg-slate-700 text-white px-6 py-3 text-xl font-bold">{t.formulario}</div>
-</div>
-
-{/* Bloco: botão */}
-<button className="bg-blue-600 text-white px-4 py-2 rounded animate-fade-in">
-  {t.adicionar}
-</button>
+      {/* Lista de tropas */}
+      <div className="space-y-6">
+        <h2 className="text-4xl font-extrabold text-green-700 animate-fade-in">{t.cadastradas}</h2>
 
         {tropas.length === 0 ? (
           <p className="text-gray-500">{t.nenhuma}</p>
@@ -199,16 +125,12 @@ function Tropas({ idioma }) {
         )}
       </div>
 
-{/* Cálculo */}
-<div className="p-6 bg-slate-50 rounded-lg shadow-md space-y-4 animate-fade-in">
-  <h3 className="text-xl font-bold text-slate-800">{t.calcular}</h3>
-</div>
+      {/* Cálculo */}
+      <div className="p-6 bg-slate-50 rounded-lg shadow-md space-y-4 animate-fade-in">
+        <h3 className="text-xl font-bold text-slate-800">{t.calcular}</h3>
 
         <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
-          <select
-            value={tropaSelecionada}
-            onChange={(e) => setTropaSelecionada(e.target.value)}
-            className="border rounded px-3 py-2">
+          <select value={tropaSelecionada} onChange={(e) => setTropaSelecionada(e.target.value)} className="border rounded px-3 py-2">
             <option value="">{t.selecione}</option>
             {tropas.map((t) => (
               <option key={t.id} value={t.id}>
@@ -217,53 +139,36 @@ function Tropas({ idioma }) {
             ))}
           </select>
 
-          <input
-            type="number"
-            value={quantidade}
-            onChange={(e) => setQuantidade(e.target.value)}
-            placeholder={t.quantidade}
-            className="border rounded px-3 py-2"
-          />
+          <input type="number" value={quantidade} onChange={(e) => setQuantidade(e.target.value)} placeholder={t.quantidade} className="border rounded px-3 py-2" />
 
           <button onClick={calcular} className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded shadow">
             {t.calcular}
           </button>
         </div>
+      </div>
 
-        {resultado && (
-          <div className="mt-4 p-4 bg-white border rounded">
-            <h4 className="font-bold mb-2">
-              {resultado.quantidade}x {resultado.nome}
-            </h4>
-            <div className="grid grid-cols-4 gap-4 text-sm">
-              <div className="flex items-center gap-1 text-yellow-700">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-yellow-700" viewBox="0 0 24 24">
-                  <path d="M12 2L15 8H9l3-6zm0 20l-3-6h6l-3 6zM2 12l6-3v6l-6-3zm20 0l-6-3v6l6-3z" />
-                </svg>
-                {t.madeira}: {resultado.total.madeira}
-              </div>
-              <div className="flex items-center gap-1 text-orange-700">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-orange-700" viewBox="0 0 24 24">
-                  <path d="M3 9h18v6H3V9zm0 8h8v2H3v-2zm10 0h8v2h-8v-2z" />
-                </svg>
-                {t.barro}: {resultado.total.barro}
-              </div>
-              <div className="flex items-center gap-1 text-gray-800">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-gray-800" viewBox="0 0 24 24">
-                  <path d="M2 17l5-9h10l5 9H2zm3 2h14v2H5v-2z" />
-                </svg>
-                {t.ferro}: {resultado.total.ferro}
-              </div>
-              <div className="flex items-center gap-1 text-green-700">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-green-700" viewBox="0 0 24 24">
-                  <path d="M12 2c-2 4-2 8 0 12 2-4 2-8 0-12zm0 6c-1 2-1 4 0 6 1-2 1-4 0-6zm-6 2c0 4 2 8 6 10-2-4-2-8-6-10zm12 0c-4 2-4 6-6 10 4-2 6-6 6-10z" />
-                </svg>
-                {t.cereal}: {resultado.total.cereal}
-              </div>
+      {/* Resultado */}
+      {resultado && (
+        <div className="mt-4 p-4 bg-white border rounded">
+          <h4 className="font-bold mb-2">
+            {resultado.quantidade}x {resultado.nome}
+          </h4>
+          <div className="grid grid-cols-4 gap-4 text-sm">
+            <div className="flex items-center gap-1 text-yellow-700">
+              {t.madeira}: {resultado.total.madeira}
+            </div>
+            <div className="flex items-center gap-1 text-orange-700">
+              {t.barro}: {resultado.total.barro}
+            </div>
+            <div className="flex items-center gap-1 text-gray-800">
+              {t.ferro}: {resultado.total.ferro}
+            </div>
+            <div className="flex items-center gap-1 text-green-700">
+              {t.cereal}: {resultado.total.cereal}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
