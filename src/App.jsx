@@ -69,59 +69,67 @@ function App() {
   });
 
   return (
-    <div className="relative min-h-screen bg-travian overflow-x-hidden">
-      {/* Header fixo com título */}
-      <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-20 bg-white/80 backdrop-blur-md px-6 py-2 rounded-md shadow-md border">
-        <h1
-          className={`text-xl sm:text-2xl md:text-3xl font-bold transition-colors duration-300 ${
-            aba === "recursos"
-              ? "text-emerald-700"
-              : aba === "tropas"
-              ? "text-indigo-700"
-              : "text-red-700"
-          }`}
-        >
-          {textos[idioma].titulo}
-        </h1>
-      </header>
-
-      {/* Seletor de idioma */}
-      <div className="fixed top-4 right-4 flex gap-6 z-20">
-        {idiomasDisponiveis.map(({ code, label, src }) => (
-          <button
-            key={code}
-            onClick={() => setIdioma(code)}
-            className={`flex flex-col items-center px-2 py-2 rounded-md border transition duration-200 ease-in-out ${
-              idioma === code
-                ? "bg-blue-600 text-white border-blue-700 shadow-lg"
-                : "bg-transparent text-gray-800 border-gray-400 shadow-md hover:border-blue-500 hover:shadow-lg"
+    <div className="flex flex-col min-h-screen bg-travian overflow-x-hidden">
+      {/* Header com título e seletor de idioma */}
+      <div className="w-full bg-white border-b shadow-sm px-4 py-4 mb-8">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <h1
+            className={`text-2xl sm:text-3xl font-bold text-center sm:text-left transition-colors duration-300 ${
+              aba === "recursos"
+                ? "text-emerald-700"
+                : aba === "tropas"
+                ? "text-indigo-700"
+                : "text-red-700"
             }`}
           >
-            <img
-              src={src}
-              alt={label}
-              className="w-6 h-4 object-cover rounded-sm mb-1"
-            />
-            <span className="text-[10px] font-medium">{label}</span>
-          </button>
-        ))}
+            {textos[idioma].titulo}
+          </h1>
+
+          <div className="flex gap-4">
+            {idiomasDisponiveis.map(({ code, label, src }) => (
+              <button
+                key={code}
+                onClick={() => setIdioma(code)}
+                className={`flex flex-col items-center px-2 py-2 rounded-md border transition duration-200 ease-in-out ${
+                  idioma === code
+                    ? "bg-blue-600 text-white border-blue-700 shadow-lg"
+                    : "bg-transparent text-gray-800 border-gray-400 shadow-md hover:border-blue-500 hover:shadow-lg"
+                }`}
+              >
+                <img
+                  src={src}
+                  alt={label}
+                  className="w-6 h-4 object-cover rounded-sm mb-1"
+                />
+                <span className="text-[10px] font-medium">{label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Painel de relógios */}
-      <div className="fixed top-4 left-4 lg:flex flex-col gap-2 max-h-[90vh] overflow-y-auto w-[180px] hidden z-10">
-        {cidadesOrdenadas.map((c) => (
-          <Relogio
-            key={c.cidade}
-            cidade={c.cidade}
-            timeZone={c.timeZone}
-            codigo={c.codigo}
-            cidadeLocal={cidadeLocal}
-          />
-        ))}
-      </div>
+{/* Painel de relógios fluido e equilibrado */}
+<div className="mx-auto w-full px-3 sm:px-4 mb-8">
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-9 gap-y-6">
+    {cidadesOrdenadas.map((c) => (
+      <Relogio
+        key={c.cidade}
+        cidade={c.cidade}
+        timeZone={c.timeZone}
+        codigo={c.codigo}
+        cidadeLocal={cidadeLocal}
+      />
+    ))}
+  </div>
+</div>
+
+
+
+
+
 
       {/* Conteúdo principal */}
-      <div className="p-6 max-w-3xl mx-auto pt-40 pb-24 z-0">
+      <div className="flex-grow p-6 max-w-3xl mx-auto pb-24 z-0">
         <p className="text-center text-xs text-red-500 mb-4 sm:hidden">
           ⚠️ Esta ferramenta não está otimizada para telemóvel.
         </p>

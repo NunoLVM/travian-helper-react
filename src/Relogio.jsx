@@ -80,14 +80,7 @@ export default function Relogio({ cidade, timeZone, codigo, cidadeLocal }) {
 
   return (
     <div
-      className={`bg-white rounded-md shadow p-2 text-center text-gray-800 dark:bg-gray-800 dark:text-gray-100 text-sm ${destaque}`}
-      style={{
-        width: "160px",
-        minWidth: "160px",
-        maxWidth: "160px",
-        overflow: "hidden",
-        whiteSpace: "nowrap",
-      }}
+      className={`bg-white rounded-md shadow p-3 text-center text-gray-800 dark:bg-gray-800 dark:text-gray-100 text-sm w-full max-w-[160px] min-h-[100px] flex flex-col justify-center ${destaque}`}
     >
       <div className="font-semibold flex items-center justify-center gap-2">
         <span className={`fi fi-${codigo}`}></span>

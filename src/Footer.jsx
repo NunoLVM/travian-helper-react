@@ -14,14 +14,16 @@ const Footer = ({ idioma }) => {
   const linkContacto = idioma === "pt" ? "Contactar-me" : idioma === "fr" ? "Me contacter" : "Contact me";
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full py-4 text-center text-xs text-gray-500 bg-white border-t border-gray-200 z-50">
-      <p className="mb-1">{textos[idioma]}</p>
-      <div className="flex justify-center gap-4 flex-wrap">
-        <AboutModal idioma={idioma} />
-        <span>|</span>
-        <LegalModal idioma={idioma} />
-        <span>|</span>
-        <ContactModal idioma={idioma} />
+    <footer className="w-full bg-white border-t shadow-sm px-4 py-4 mt-12">
+      <div className="max-w-6xl mx-auto text-center text-xs text-gray-500">
+        <p className="mb-2">{textos[idioma]}</p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <AboutModal idioma={idioma} />
+          <span>|</span>
+          <LegalModal idioma={idioma} />
+          <span>|</span>
+          <ContactModal idioma={idioma} />
+        </div>
       </div>
     </footer>
   );
